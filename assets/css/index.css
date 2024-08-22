@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+*{
+  margin: 0px;
+  padding: 0px;  
+}
+
+:root{
+    --cor01: rgb(31, 31, 31);;
+}
+
+body{
+    background-color: rgb(56, 80, 102);
+    font-family: arial;
+}
+
+h1{
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 10px black;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+
+header > img{
+    width: 200px;
+}
+
+#form{
+    display: block;
+    margin: 0px;
+    padding: 10px;
+    width: 350px;
+    color: white;
+    background-color: var(--cor01);
+    border-radius: 10px;
+}
+
+#main{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+
+#form > label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    font-size: 1em;
+    border-bottom: solid 1px white;
+    text-shadow: 0px 0px 2px rgb(0, 0, 0);
+}
+
+input{
+    width: 100px;
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: 600;
+    background-color: var(--cor01);
+    color: white;
+    border: none;
+    outline: none;
+
+    
+}
+
+#ibut{
+    display: block;
+    margin: 15px auto 10px auto;
+    padding: 5px;
+    font-weight: 600;
+    font-size: 2em;
+    cursor: pointer;
+    background-color: white;
+    color: var(--cor01);
+    border-radius: 10px;
+    border: solid 2px white;
+}
+
+#ibut:hover{
+    background-color: var(--cor01);
+    color: white;
+    border: solid 2px white;
+}
+
+#form > :nth-child(1), #form > :nth-child(1) > input, #res > :nth-child(1){
+    color: rgb(255, 102, 0);
+}
+
+#form > :nth-child(2), #form > :nth-child(2) > input, #res > :nth-child(2){
+    color: rgb(251, 255, 0);
+}
+
+#form > :nth-child(3), #form > :nth-child(3) > input, #res > :nth-child(3){
+    color: rgb(0, 255, 157);
+}
+
+#form > :nth-child(4), #form > :nth-child(4) > input, #res > :nth-child(4){
+    color: rgb(17, 0, 255);
+}
+
+#form > :nth-child(5), #form > :nth-child(5) > input, #res > :nth-child(5){
+    color: rgb(153, 1, 255);
+}
+
+#form > :nth-child(6), #form > :nth-child(6) > input, #res > :nth-child(6){
+    color: rgb(255, 0, 191);
+}
+
+#form > :nth-child(7), #form > :nth-child(7) > input{
+    color: rgb(0, 255, 0);
+}
+
+#form > :nth-child(8), #form > :nth-child(8) > input{
+    color: rgb(255, 0, 0);
+}
+
+#res{
+    display: none;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    text-align: justify;
+    font-size: 2em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.795);
+}
+
+#res > p{
+    margin: 10px;
+}
