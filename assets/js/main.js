@@ -1,68 +1,77 @@
 const form = document.querySelector('#form')
     form.addEventListener('submit', function(e){
         e.preventDefault()
-    })
+    })  
 
 function calcular(){
-    res.innerHTML = ""
-    form.style.margin = ""
-    res.style.display = "block"
+    const item = document.querySelectorAll('.item')
+    const imposto = document.querySelector('#impos').value
+    const desconto = document.querySelector('#idesc').value
 
+    itens = []
 
-    Vitem01 = Number(item01.value)
-    Vitem02 = Number(item02.value)
-    Vitem03 = Number(item03.value)
-    Vitem04 = Number(item04.value)
-    Vitem05 = Number(item05.value)
-    Vitem06 = Number(item06.value)
-    imposto = Number(impos.value)
-    desconto = Number(idesc.value)
+    //Inserir valores dos itens no array
+    item.forEach(element => {
+        itens.push(Number(element.value))
+    });
 
-    subTotal = Vitem01 + Vitem02 + Vitem03 + Vitem04 + Vitem05 + Vitem06  
+    //Calcular subtotal
+    subTotal = itens.reduce(function(e, a){
+        e += a
+        return e
+    })
 
-    //Proporção para cada
-    prop01 = Vitem01 / subTotal
-    prop02 = Vitem02 / subTotal
-    prop03 = Vitem03 / subTotal
-    prop04 = Vitem04 / subTotal
-    prop05 = Vitem05 / subTotal
-    prop06 = Vitem06 / subTotal
+    console.log('Subtotal: ',subTotal)
+    console.log('Itens: ', itens)
 
-    //Taxas para cada
-    taxa01 = prop01 * imposto
-    taxa02 = prop02 * imposto
-    taxa03 = prop03 * imposto
-    taxa04 = prop04 * imposto
-    taxa05 = prop05 * imposto
-    taxa06 = prop06 * imposto
+    //res.innerHTML = ""
+    //form.style.margin = ""
+    //res.style.display = "block"
 
-    //Desconto para cada
-    desc01 = prop01 * desconto
-    desc02 = prop02 * desconto
-    desc03 = prop03 * desconto
-    desc04 = prop04 * desconto
-    desc05 = prop05 * desconto
-    desc06 = prop06 * desconto
+    //Calcular proporção
+    prop = itens.map(function(e){
+        e /= subTotal
+        return Number(e)
+    })
 
-    Vitem01Final = Vitem01 + taxa01 - desc01
-    Vitem02Final = Vitem02 + taxa02 - desc02
-    Vitem03Final = Vitem03 + taxa03 - desc03
-    Vitem04Final = Vitem04 + taxa04 - desc04
-    Vitem05Final = Vitem05 + taxa05 - desc05
-    Vitem06Final = Vitem06 + taxa06 - desc06
+    console.log("Proporção: ", prop)
 
-    valorFinalTotal = Vitem01Final + Vitem02Final + Vitem03Final + Vitem04Final + Vitem05Final + Vitem06Final
+    //Calcular proporção de imposto
+    taxa = prop.map(function(e){
+        e *= imposto
+        return Number(e)
+    }) 
 
-    res.innerHTML += `<p>Item 1: ${Vitem01Final.toFixed(2)}</p>` 
-    res.innerHTML += `<p>Item 2: ${Vitem02Final.toFixed(2)}</p>`
-    res.innerHTML += `<p>Item 3: ${Vitem03Final.toFixed(2)}</p>`
-    res.innerHTML += `<p>Item 4: ${Vitem04Final.toFixed(2)}</p>`
-    res.innerHTML += `<p>Item 5: ${Vitem05Final.toFixed(2)}</p>`
-    res.innerHTML += `<p>Item 6: ${Vitem06Final.toFixed(2)}</p>`
+    console.log("Taxa: ", taxa)
 
-    //res.innerHTML += `<p>Subtotal: ${subTotal}</p>`
+    //Calcular proporção de desconto
+    desc = prop.map(function(e){
+        e *= desconto
+        return Number(e)
+    })
 
-    //res.innerHTML += `<p>Valor Total (teste): ${valorFinalTotal.toFixed(2)}</p>`
-    
+    console.log("Desconto: ", desc)
+
+    VitemFinal = []
+
+    //Calcular valor final dos itens
+    for(i = 0; i < itens.length; i++){
+        VitemFinal[i] = itens[i] + taxa[i] - desc[i]
+    }
+
+    console.log("Valor Item Final : ", VitemFinal)
+
+    //Valor Final Total
+    valorFinalTotal = VitemFinal.reduce(function(e, a){
+        e += a
+        return e
+    })
+    console.log("Valor Final Total: ",valorFinalTotal)
+
+    //Atribuir valores finais em cada input
+    for (let i = 0; i < item.length; i++){
+        item[i].value = VitemFinal[i].toFixed(2)
+       console.log(item[i].value)   
+    }
 }
 
